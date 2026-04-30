@@ -38,11 +38,6 @@
       <uri>http://www.pgdesign.ufrgs.br/</uri>
     </contributor>
     <contributor>
-      <name>Gislaine Costa Pereira</name>
-      <email>devgislainecosta@gmail.com</email>
-      <uri>https://github.com/gislainecosta</uri>
-    </contributor>
-    <contributor>
       <name>Kelson Anthony de Menezes</name>
       <email>kanthony@ebsco.com</email>
       <uri>https://www.mendeley.com/profiles/kelson-anthony/</uri>
@@ -59,6 +54,11 @@
     <contributor>
       <name>Patrick O'Brien</name>
       <uri>https://citationstyler.com/</uri>
+    </contributor>
+    <contributor>
+      <name>Gislaine Costa Pereira</name>
+      <email>devgislainecosta@gmail.com</email>
+      <uri>https://github.com/gislainecosta</uri>
     </contributor>
     <category citation-format="author-date"/>
     <category field="generic-base"/>
