@@ -7,9 +7,6 @@ O objetivo desta adaptação é manter a estrutura geral do estilo UFRGS-ABNT e 
 ---
 
 ## 📑 Sumário
-
-- [� Adaptado de UFRGS - ABNT 6023:2025 e 10520:2023 com DOI](#-adaptado-de-ufrgs---abnt-60232025-e-105202023-com-doi)
-  - [📑 Sumário](#-sumário)
   - [📄 Arquivo do estilo](#-arquivo-do-estilo)
   - [✨ Principais adaptações](#-principais-adaptações)
   - [🔗 URL Raw do estilo](#-url-raw-do-estilo)
@@ -26,7 +23,6 @@ O objetivo desta adaptação é manter a estrutura geral do estilo UFRGS-ABNT e 
   - [📝 Recomendação de uso](#-recomendação-de-uso)
   - [⚖️ Licença](#️-licença)
   - [👤 Créditos](#-créditos)
-
 ---
 
 ## 📄 Arquivo do estilo
