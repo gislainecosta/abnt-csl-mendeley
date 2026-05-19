@@ -271,46 +271,6 @@
       </else>
     </choose>
   </macro>
-  <macro name="author-short-parenthetical">
-    <!-- Macro para citação parentética: até 3 autores separados por ponto e vírgula, sem "e" antes do último -->
-    <choose>
-      <if type="broadcast motion_picture song" match="any">
-        <text variable="title" form="short" text-case="uppercase" quotes="false"/>
-      </if>
-      <else-if type="musical_score" match="any">
-        <names variable="composer">
-          <name form="short" delimiter="; " delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all" initialize="true">
-            <name-part name="family"/>
-            <name-part name="given"/>
-          </name>
-          <substitute>
-            <names variable="author"/>
-          </substitute>
-        </names>
-      </else-if>
-      <else>
-        <names variable="author">
-          <name form="short" delimiter="; " delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all" initialize="true">
-            <name-part name="family"/>
-            <name-part name="given"/>
-          </name>
-          <et-al font-style="italic"/>
-          <substitute>
-            <names variable="editor"/>
-            <names variable="translator"/>
-            <choose>
-              <if type="book">
-                <text variable="title" form="short"/>
-              </if>
-              <else>
-                <text variable="title" form="short" quotes="false"/>
-              </else>
-            </choose>
-          </substitute>
-        </names>
-      </else>
-    </choose>
-  </macro>
   <macro name="access">
     <!-- Adaptação: em artigos de periódico/revista/jornal com DOI, a URL e a data de acesso são suprimidas para evitar redundância.
          Para itens sem DOI, ou para outros tipos documentais online, mantém Disponível em/Acesso em quando houver URL. -->
@@ -816,7 +776,18 @@
         <else>
           <!-- do contrário é o formato padrão de autor e data separados por vírgula -->
           <group delimiter=", ">
-            <text macro="author-short-parenthetical"/>
+            <names variable="author">
+              <name form="short" delimiter="; " delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all" initialize="true">
+                <name-part name="family"/>
+                <name-part name="given"/>
+              </name>
+              <et-al font-style="italic"/>
+              <substitute>
+                <names variable="editor"/>
+                <names variable="translator"/>
+                <text variable="title" form="short"/>
+              </substitute>
+            </names>
             <text macro="issued-year"/>
             <text macro="citation-locator"/>
           </group>
