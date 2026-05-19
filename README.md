@@ -60,7 +60,7 @@ O Mendeley Cite pode solicitar uma URL do estilo customizado, em vez de upload m
 Use a URL Raw do GitHub:
 
 ```text
-https://raw.githubusercontent.com/gislainecosta/abnt-csl-mendeley/main/adaptado-ufrgs-abnt-2025-com-doi-github.csl
+https://raw.githubusercontent.com/gislainecosta/abnt-csl-mendeley/refs/heads/main/abnt-adaptado-ufrgs-6023-2025-10520-2023-doi.csl
 ```
 
 Essa é a URL direta do arquivo `.csl`.
@@ -77,21 +77,13 @@ Para copiar a URL correta pelo GitHub:
 2. Clique no arquivo:
 
 ```text
-adaptado-ufrgs-abnt-2025-com-doi-github.csl
+abnt-adaptado-ufrgs-6023-2025-10520-2023-doi.csl
 ```
 
 3. Com o arquivo aberto, clique em **Raw**.
 4. O navegador abrirá o conteúdo bruto do arquivo.
 5. Copie a URL da barra de endereço.
 6. Cole essa URL no Mendeley Cite quando ele solicitar a URL do estilo customizado.
-
-A URL Raw também pode aparecer neste formato:
-
-```text
-https://raw.githubusercontent.com/gislainecosta/abnt-csl-mendeley/refs/heads/main/adaptado-ufrgs-abnt-2025-com-doi-github.csl
-```
-
-As duas formas apontam para o arquivo na branch `main`.
 
 ---
 
