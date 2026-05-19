@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" default-locale="pt-BR">
   <info>
-    <title>UFRGS ABNT Autor-Data com DOI v.1</title>
-    <title-short>UFRGS ABNT DOI v.1</title-short>
+    <title>ABNT 2025 com DOI (Adaptado de UFRGS)</title>
+    <title-short>ABNT 2025 DOI (BaseUFRGS)</title-short>
     <id>https://github.com/gislainecosta/abnt-csl-mendeley/adaptado-ufrgs-abnt-2025-com-doi</id>
     <link href="https://github.com/gislainecosta/abnt-csl-mendeley/blob/main/adaptado-ufrgs-abnt-2025-com-doi-github.csl" rel="self"/>
     <link href="http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas-ipea" rel="template"/>
@@ -253,7 +253,7 @@
             <name-part name="family"/>
             <name-part name="given"/>
           </name>
-          <et-al font-style="italic"/>
+          <et-al term="et-al" font-style="italic"/>
           <substitute>
             <names variable="editor"/>
             <names variable="translator"/>

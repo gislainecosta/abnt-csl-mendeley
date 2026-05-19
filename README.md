@@ -8,17 +8,24 @@ O objetivo desta adaptação é manter a estrutura geral do estilo UFRGS-ABNT e 
 
 ## 📑 Sumário
 
-- [📄 Arquivo do estilo](#-arquivo-do-estilo)
-- [✨ Principais adaptações](#-principais-adaptações)
-- [🔗 URL Raw do estilo](#-url-raw-do-estilo)
-- [🧭 Como obter a URL Raw pelo GitHub](#-como-obter-a-url-raw-pelo-github)
-- [⚙️ Como instalar no Mendeley Cite usando a URL](#️-como-instalar-no-mendeley-cite-usando-a-url)
-- [🔄 Passo importante após instalar ou trocar o estilo](#-passo-importante-após-instalar-ou-trocar-o-estilo)
-- [✅ Como conferir se o estilo correto foi instalado](#-como-conferir-se-o-estilo-correto-foi-instalado)
-- [🧾 Observações sobre DOI, ISBN e ISSN](#-observações-sobre-doi-isbn-e-issn)
-- [📝 Recomendação de uso](#-recomendação-de-uso)
-- [⚖️ Licença](#️-licença)
-- [👤 Créditos](#-créditos)
+- [� Adaptado de UFRGS - ABNT 6023:2025 e 10520:2023 com DOI](#-adaptado-de-ufrgs---abnt-60232025-e-105202023-com-doi)
+  - [📑 Sumário](#-sumário)
+  - [📄 Arquivo do estilo](#-arquivo-do-estilo)
+  - [✨ Principais adaptações](#-principais-adaptações)
+  - [🔗 URL Raw do estilo](#-url-raw-do-estilo)
+  - [🧭 Como obter a URL Raw pelo GitHub](#-como-obter-a-url-raw-pelo-github)
+  - [⚙️ Como instalar no Mendeley Cite usando a URL](#️-como-instalar-no-mendeley-cite-usando-a-url)
+  - [🔄 Passo importante após instalar ou trocar o estilo](#-passo-importante-após-instalar-ou-trocar-o-estilo)
+  - [✅ Como conferir se o estilo correto foi instalado](#-como-conferir-se-o-estilo-correto-foi-instalado)
+  - [🧾 Observações sobre DOI, ISBN e ISSN](#-observações-sobre-doi-isbn-e-issn)
+  - [⚠️ Limitação conhecida: *et al.* em itálico nas citações textuais](#️-limitação-conhecida-et-al-em-itálico-nas-citações-textuais)
+    - [O problema](#o-problema)
+    - [Solução: corrigir o itálico no documento final](#solução-corrigir-o-itálico-no-documento-final)
+      - [✅ Word instalado no PC (Office 2016 ou superior, incluindo Microsoft 365 e versões Enterprise)](#-word-instalado-no-pc-office-2016-ou-superior-incluindo-microsoft-365-e-versões-enterprise)
+      - [⚠️ Word para a web (office.com, acessado pelo navegador)](#️-word-para-a-web-officecom-acessado-pelo-navegador)
+  - [📝 Recomendação de uso](#-recomendação-de-uso)
+  - [⚖️ Licença](#️-licença)
+  - [👤 Créditos](#-créditos)
 
 ---
 
@@ -165,6 +172,85 @@ Em termos gerais:
 | **ISSN** | Identifica periódicos, revistas, jornais e publicações seriadas. |
 
 Por isso, em artigos científicos, o DOI é priorizado em relação ao ISSN, já que o ISSN identifica a revista como um todo, enquanto o DOI identifica o artigo específico.
+
+---
+
+## ⚠️ Limitação conhecida: *et al.* em itálico nas citações textuais
+
+### O problema
+
+A ABNT exige que *et al.* apareça em itálico. Este estilo CSL aplica corretamente o itálico nas **citações parentéticas** — por exemplo:
+
+> (Li *et al.*, 2019; Norton *et al.*, 2019)
+
+No entanto, nas **citações textuais** — quando o autor é citado fora dos parênteses — o Mendeley não aplica o itálico:
+
+> Segundo Wang et al. (2024), a duração da fertilidade...
+
+Esse comportamento é um **bug conhecido do Mendeley** e foi confirmado pelos mantenedores do padrão CSL. O atributo `font-style="italic"` no elemento `<et-al>` é CSL válido e funciona corretamente no Zotero, mas o processador interno do Mendeley ignora essa formatação nas citações textuais. Não há solução possível apenas via CSL enquanto o Mendeley não corrigir esse comportamento.
+
+### Solução: corrigir o itálico no documento final
+
+A correção deve ser feita diretamente no Word, após finalizar todas as citações. O método disponível depende de como você está usando o Word:
+
+---
+
+#### ✅ Word instalado no PC (Office 2016 ou superior, incluindo Microsoft 365 e versões Enterprise)
+
+Use a **macro VBA** disponível neste repositório no arquivo `Macro.txt`. Ela percorre todo o documento automaticamente e formata em itálico todas as ocorrências de *et al.*, inclusive dentro das citações inseridas pelo Mendeley.
+
+**Antes de começar: verifique se as macros estão habilitadas**
+
+Por padrão, o Word pode bloquear a execução de macros por segurança. Para verificar e habilitar:
+
+1. Vá em `Arquivo → Opções → Central de Confiabilidade → Configurações da Central de Confiabilidade → Configurações de Macro`.
+2. Selecione **Desabilitar todas as macros com notificação** (recomendado) ou **Habilitar todas as macros**.
+   > A opção "com notificação" é a mais segura: o Word pergunta antes de rodar qualquer macro, e você autoriza caso a caso.
+3. Marque também **Confiar no acesso ao modelo de objeto do projeto VBA**.
+4. Clique em **OK** em todas as janelas abertas.
+5. Feche e reabra o Word para as configurações entrarem em vigor.
+
+---
+
+**Como instalar a macro (uma vez só):**
+
+1. Abra o Word.
+2. Pressione `Alt + F11` para abrir o editor VBA.
+3. No painel esquerdo, localize **Normal** → **Modules**.
+4. Clique com o botão direito em **Modules** → **Insert → Module**.
+   > Isso cria um módulo no `Normal.dotm`, o template global do Word. A macro ficará disponível em **todos os documentos futuros**, permanentemente.
+5. Abra o arquivo `Macro.txt`, copie todo o conteúdo e cole no módulo em branco.
+6. Salve com `Ctrl + S`.
+
+**Como executar a macro:**
+
+- `Alt + F8` → selecione `ItalicizarEtAl` → clique em **Executar**
+
+**Opcional — criar um atalho de teclado:**
+
+1. Vá em `Arquivo → Opções → Personalizar Faixa de Opções → Atalhos de Teclado: Personalizar`.
+2. Em **Categorias**, escolha **Macros**.
+3. Selecione `ItalicizarEtAl`.
+4. Clique no campo **Pressione novo atalho** e pressione o atalho desejado, por exemplo `Ctrl + Shift + I`.
+5. Clique em **Atribuir** → **Fechar**.
+
+A macro formata apenas as ocorrências que **ainda não estão em itálico**, portanto é seguro executá-la várias vezes. Ao terminar, ela exibe uma mensagem informando quantas ocorrências foram formatadas.
+
+---
+
+#### ⚠️ Word para a web (office.com, acessado pelo navegador)
+
+> **Atenção:** o **Microsoft 365** é uma assinatura que inclui o Word **instalado no PC** — ele suporta macros normalmente, como qualquer versão do Office. O cenário abaixo se aplica apenas a quem acessa o Word **diretamente pelo navegador**, no endereço office.com, sem instalar nada.
+
+O Word para a web **não suporta macros VBA** e o seu Localizar e Substituir não permite aplicar formatação — apenas substituir texto simples. Por isso, **não é possível automatizar a correção do itálico diretamente no navegador**.
+
+**Solução recomendada:** baixe o documento (`.docx`) e abra no Word instalado no PC para executar a macro. Após rodar a macro, salve e reenvie para o OneDrive ou SharePoint se necessário.
+
+Se realmente não tiver acesso ao Word desktop, a única alternativa é corrigir manualmente: localize cada ocorrência de *et al.* nas citações textuais e pressione `Ctrl + I`.
+
+---
+
+> **Recomendação geral:** execute a correção após finalizar todas as citações do documento, antes da entrega final.
 
 ---
 

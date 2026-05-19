@@ -1,0 +1,118 @@
+Attribute VB_Name = "ItalicizarEtAl"
+' ============================================================
+'  ItalicizarEtAl
+'  Formata em itálico todas as ocorrências de "et al."
+'  no documento ativo, incluindo dentro de campos do Mendeley.
+' ============================================================
+
+Sub ItalicizarEtAl()
+
+    Dim oDoc    As Document
+    Dim oRange  As Range
+    Dim contador As Long
+
+    oDoc = ActiveDocument
+    contador = 0
+
+    ' --- 1. Formata no corpo normal do documento ---
+    Set oRange = oDoc.Content
+    With oRange.Find
+        .ClearFormatting
+        .ReplacementClearFormatting
+        .Text = "et al."
+        .Replacement.Text = "et al."
+        .Replacement.Font.Italic = True
+        .Forward = True
+        .Wrap = wdFindContinue
+        .Format = True
+        .MatchCase = True
+        .MatchWholeWord = False
+    End With
+
+    Do While oRange.Find.Execute
+        If Not oRange.Font.Italic Then
+            oRange.Font.Italic = True
+            contador = contador + 1
+        End If
+    Loop
+
+    ' --- 2. Formata dentro de campos (citações do Mendeley/Word) ---
+    Dim oField As Field
+    Dim oFieldRange As Range
+    For Each oField In oDoc.Fields
+        Set oFieldRange = oField.Result
+        With oFieldRange.Find
+            .ClearFormatting
+            .ReplacementClearFormatting
+            .Text = "et al."
+            .Replacement.Text = "et al."
+            .Replacement.Font.Italic = True
+            .Forward = True
+            .Wrap = wdFindStop
+            .Format = True
+            .MatchCase = True
+            .MatchWholeWord = False
+        End With
+        Do While oFieldRange.Find.Execute
+            If Not oFieldRange.Font.Italic Then
+                oFieldRange.Font.Italic = True
+                contador = contador + 1
+            End If
+        Loop
+    Next oField
+
+    ' --- 3. Formata em cabeçalhos e rodapés ---
+    Dim oSection As Section
+    Dim oHeaderFooter As HeaderFooter
+    For Each oSection In oDoc.Sections
+        For Each oHeaderFooter In oSection.Headers
+            If oHeaderFooter.Exists Then
+                Set oRange = oHeaderFooter.Range
+                With oRange.Find
+                    .ClearFormatting
+                    .Text = "et al."
+                    .Replacement.Text = "et al."
+                    .Replacement.Font.Italic = True
+                    .Forward = True
+                    .Wrap = wdFindStop
+                    .Format = True
+                    .MatchCase = True
+                End With
+                Do While oRange.Find.Execute
+                    oRange.Font.Italic = True
+                    contador = contador + 1
+                Loop
+            End If
+        Next
+        For Each oHeaderFooter In oSection.Footers
+            If oHeaderFooter.Exists Then
+                Set oRange = oHeaderFooter.Range
+                With oRange.Find
+                    .ClearFormatting
+                    .Text = "et al."
+                    .Replacement.Text = "et al."
+                    .Replacement.Font.Italic = True
+                    .Forward = True
+                    .Wrap = wdFindStop
+                    .Format = True
+                    .MatchCase = True
+                End With
+                Do While oRange.Find.Execute
+                    oRange.Font.Italic = True
+                    contador = contador + 1
+                Loop
+            End If
+        Next
+    Next oSection
+
+    ' --- Resultado ---
+    If contador > 0 Then
+        MsgBox "Pronto! " & contador & " ocorrência(s) de ""et al."" formatada(s) em itálico.", _
+               vbInformation, "ItalicizarEtAl"
+    Else
+        MsgBox "Nenhuma ocorrência nova de ""et al."" encontrada." & vbCrLf & _
+               "(As existentes já podem estar em itálico.)", _
+               vbInformation, "ItalicizarEtAl"
+    End If
+
+End Sub
