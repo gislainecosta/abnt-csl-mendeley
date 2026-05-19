@@ -249,7 +249,7 @@
       </else-if>
       <else>
         <names variable="author">
-          <name form="short" delimiter="; " delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all" initialize="true">
+          <name form="short" delimiter=", " delimiter-precedes-last="never" and="text" initialize-with=". " name-as-sort-order="all" initialize="true">
             <name-part name="family"/>
             <name-part name="given"/>
           </name>
@@ -260,6 +260,46 @@
             <choose>
               <if type="book">
                 <!-- uso do título quando não houver autor -->
+                <text variable="title" form="short"/>
+              </if>
+              <else>
+                <text variable="title" form="short" quotes="false"/>
+              </else>
+            </choose>
+          </substitute>
+        </names>
+      </else>
+    </choose>
+  </macro>
+  <macro name="author-short-parenthetical">
+    <!-- Macro para citação parentética: até 3 autores separados por ponto e vírgula, sem "e" antes do último -->
+    <choose>
+      <if type="broadcast motion_picture song" match="any">
+        <text variable="title" form="short" text-case="uppercase" quotes="false"/>
+      </if>
+      <else-if type="musical_score" match="any">
+        <names variable="composer">
+          <name form="short" delimiter="; " delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all" initialize="true">
+            <name-part name="family"/>
+            <name-part name="given"/>
+          </name>
+          <substitute>
+            <names variable="author"/>
+          </substitute>
+        </names>
+      </else-if>
+      <else>
+        <names variable="author">
+          <name form="short" delimiter="; " delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all" initialize="true">
+            <name-part name="family"/>
+            <name-part name="given"/>
+          </name>
+          <et-al font-style="italic"/>
+          <substitute>
+            <names variable="editor"/>
+            <names variable="translator"/>
+            <choose>
+              <if type="book">
                 <text variable="title" form="short"/>
               </if>
               <else>
@@ -776,7 +816,7 @@
         <else>
           <!-- do contrário é o formato padrão de autor e data separados por vírgula -->
           <group delimiter=", ">
-            <text macro="author-short"/>
+            <text macro="author-short-parenthetical"/>
             <text macro="issued-year"/>
             <text macro="citation-locator"/>
           </group>
