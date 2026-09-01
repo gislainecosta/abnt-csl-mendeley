@@ -205,10 +205,8 @@ Por padrão, o Word pode bloquear a execução de macros por segurança. Para ve
 1. Abra o Word.
 2. Pressione `Alt + F11` para abrir o editor VBA.
 3. No painel esquerdo, localize **Normal** → **Modules**.
-4. Clique com o botão direito em **Modules** → **Insert → Module**.
-   > Isso cria um módulo no `Normal.dotm`, o template global do Word. A macro ficará disponível em **todos os documentos futuros**, permanentemente.
-5. Abra o arquivo `Macro.txt`, copie todo o conteúdo e cole no módulo em branco.
-6. Salve com `Ctrl + S`.
+4. Abra o arquivo `Macro.txt`, copie todo o conteúdo e cole no módulo em branco.
+5. Salve com `Ctrl + S`.
 
 **Como executar a macro:**
 
