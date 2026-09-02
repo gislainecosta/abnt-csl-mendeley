@@ -2,36 +2,54 @@
 
 Este repositório contém um estilo CSL customizado para uso no **Mendeley Cite**, adaptado a partir do estilo **UFRGS-ABNT**.
 
-O objetivo desta adaptação é manter a estrutura geral do estilo UFRGS-ABNT e acrescentar ajustes voltados ao uso acadêmico conforme a **ABNT 6023:2025**, para referências, e a **ABNT 10520:2023**, para citações.
+O objetivo desta adaptação é preservar a estrutura geral do estilo UFRGS-ABNT e acrescentar ajustes voltados ao uso acadêmico conforme a **ABNT NBR 6023:2025**, para referências, e a **ABNT NBR 10520:2023**, para citações.
 
 ---
 
 ## 📑 Sumário
-  - [📄 Arquivo do estilo](#-arquivo-do-estilo)
-  - [✨ Principais adaptações](#-principais-adaptações)
-  - [🔗 URL Raw do estilo](#-url-raw-do-estilo)
-  - [🧭 Como obter a URL Raw pelo GitHub](#-como-obter-a-url-raw-pelo-github)
-  - [⚙️ Como instalar no Mendeley Cite usando a URL](#️-como-instalar-no-mendeley-cite-usando-a-url)
-  - [🔄 Passo importante após instalar ou trocar o estilo](#-passo-importante-após-instalar-ou-trocar-o-estilo)
-  - [✅ Como conferir se o estilo correto foi instalado](#-como-conferir-se-o-estilo-correto-foi-instalado)
-  - [🧾 Observações sobre DOI, ISBN e ISSN](#-observações-sobre-doi-isbn-e-issn)
-  - [⚠️ Limitação conhecida: *et al.* em itálico nas citações textuais](#️-limitação-conhecida-et-al-em-itálico-nas-citações-textuais)
-    - [O problema](#o-problema)
-    - [Solução: corrigir o itálico no documento final](#solução-corrigir-o-itálico-no-documento-final)
-      - [✅ Word instalado no PC (Office 2016 ou superior, incluindo Microsoft 365 e versões Enterprise)](#-word-instalado-no-pc-office-2016-ou-superior-incluindo-microsoft-365-e-versões-enterprise)
-      - [⚠️ Word para a web (office.com, acessado pelo navegador)](#️-word-para-a-web-officecom-acessado-pelo-navegador)
-  - [📝 Recomendação de uso](#-recomendação-de-uso)
-  - [⚖️ Licença](#️-licença)
-  - [👤 Créditos](#-créditos)
+
+- [📄 Arquivos CSL e compatibilidade](#-arquivos-csl-e-compatibilidade)
+- [✨ Principais adaptações](#-principais-adaptações)
+- [📐 Formatação da bibliografia](#-formatação-da-bibliografia)
+- [🔗 URL Raw do estilo principal](#-url-raw-do-estilo-principal)
+- [⚙️ Instalação no Mendeley Cite](#️-instalação-no-mendeley-cite)
+- [🔄 Atualização do estilo no documento](#-atualização-do-estilo-no-documento)
+- [🧾 DOI, ISBN e ISSN](#-doi-isbn-e-issn)
+- [⚠️ Limitação conhecida: *et al.* em citações textuais](#️-limitação-conhecida-et-al-em-citações-textuais)
+- [📝 Recomendação de uso](#-recomendação-de-uso)
+- [⚖️ Licença](#️-licença)
+- [👤 Créditos](#-créditos)
+
 ---
 
-## 📄 Arquivo do estilo
+## 📄 Arquivos CSL e compatibilidade
 
-O arquivo principal deste repositório é:
+O **arquivo principal e canônico** para novas instalações é:
+
+```text
+abnt-adaptado-ufrgs-6023-2025-10520-2023-doi.csl
+```
+
+Este é o arquivo que deve receber as novas correções e evoluções do estilo.
+
+O repositório também mantém o arquivo:
 
 ```text
 adaptado-ufrgs-abnt-2025-com-doi-github.csl
 ```
+
+Esse segundo arquivo existe por **compatibilidade com documentos antigos**. Versões anteriores do estilo usaram essa URL, e o Mendeley Cite pode armazenar no próprio documento do Word o endereço exato do arquivo CSL. Se o arquivo antigo deixar de existir no GitHub, documentos já vinculados a ele podem deixar de carregar o estilo corretamente.
+
+> **Não excluir o arquivo legado.** Ele deve permanecer disponível para preservar a compatibilidade com documentos que já registraram a URL antiga.
+
+Para novos documentos, use sempre o arquivo canônico `abnt-adaptado-ufrgs-6023-2025-10520-2023-doi.csl`.
+
+### Resumo
+
+| Arquivo | Função | Uso recomendado |
+|---|---|---|
+| `abnt-adaptado-ufrgs-6023-2025-10520-2023-doi.csl` | Arquivo principal/canônico | Novas instalações e futuras atualizações |
+| `adaptado-ufrgs-abnt-2025-com-doi-github.csl` | Arquivo legado de compatibilidade | Documentos antigos que já armazenaram essa URL |
 
 ---
 
@@ -41,23 +59,51 @@ adaptado-ufrgs-abnt-2025-com-doi-github.csl
 - Priorização do DOI quando disponível.
 - Tratamento de ISBN e ISSN conforme o tipo documental.
 - Prioridade de identificadores por tipo de documento:
-  - artigos: DOI prioritário; ISSN apenas como alternativa;
-  - livros: DOI prioritário; ISBN como alternativa;
-  - capítulos: DOI prioritário; ISBN como alternativa;
-  - trabalhos em evento: DOI prioritário; depois ISBN ou ISSN;
+  - artigos: DOI prioritário;
+  - livros: DOI prioritário, com ISBN como alternativa;
+  - capítulos: DOI prioritário, com ISBN como alternativa;
+  - trabalhos em evento: DOI prioritário, depois ISBN ou ISSN;
   - teses, dissertações, relatórios, documentos, páginas web, datasets e softwares: DOI quando disponível.
-- Correção da macro de acesso eletrônico para exibir `Disponível em:` apenas quando houver URL cadastrada.
+- Supressão de URL e data de acesso em artigos que possuem DOI.
+- Exibição de `Disponível em:` apenas quando há URL cadastrada e aplicável ao tipo documental.
 - Preservação da estrutura autor-data do estilo UFRGS-ABNT.
-- Preservação dos créditos dos autores e contribuidores originais no arquivo `.csl`.
-- Inclusão da adaptação como versão customizada, com identificador próprio para evitar conflito com o estilo UFRGS original no Mendeley.
+- Preservação dos créditos dos autores e contribuidores originais.
+- Identificador próprio para evitar conflito com o estilo UFRGS original no Mendeley.
 
 ---
 
-## 🔗 URL Raw do estilo
+## 📐 Formatação da bibliografia
 
-O Mendeley Cite pode solicitar uma URL do estilo customizado, em vez de upload manual do arquivo.
+O bloco `<bibliography>` controla parte da apresentação da lista de referências.
 
-Use a URL Raw do GitHub:
+Para referências com **espaçamento simples entre linhas e sem uma linha em branco entre entradas**, o estilo canônico deve usar:
+
+```xml
+<bibliography et-al-min="4" et-al-use-first="1" line-spacing="1" entry-spacing="0">
+```
+
+- `line-spacing="1"` define espaçamento simples dentro de cada referência.
+- `entry-spacing="0"` remove a linha adicional entre uma referência e outra.
+
+### Espaçamento de parágrafo de 6 pt
+
+A configuração desejada para documentos acadêmicos deste projeto é:
+
+- **Antes:** 0 pt
+- **Depois:** 6 pt
+- **Entrelinhas:** simples
+
+O CSL atual permite controlar `line-spacing` e `entry-spacing`, mas o padrão CSL define `entry-spacing` como um número inteiro de alturas de linha. Por isso, o CSL válido não possui um atributo próprio para declarar exatamente `6 pt` após cada parágrafo.
+
+No Word, aplique o espaçamento de **0 pt antes e 6 pt depois** ao parágrafo da bibliografia. O arquivo CSL permanece responsável pelo espaçamento simples e pela ausência de uma linha em branco adicional.
+
+> Algumas implementações antigas aceitaram valores fracionários, como `entry-spacing="0.5"`, mas esse valor não atende ao esquema CSL atual. O arquivo canônico evita essa solução para preservar a validade e a compatibilidade do estilo.
+
+---
+
+## 🔗 URL Raw do estilo principal
+
+Use esta URL para novas instalações:
 
 ```text
 https://raw.githubusercontent.com/gislainecosta/abnt-csl-mendeley/refs/heads/main/abnt-adaptado-ufrgs-6023-2025-10520-2023-doi.csl
@@ -65,186 +111,102 @@ https://raw.githubusercontent.com/gislainecosta/abnt-csl-mendeley/refs/heads/mai
 
 Essa é a URL direta do arquivo `.csl`.
 
-> **Importante:** não use a URL visual do GitHub no formato `github.com/.../blob/...`, porque ela aponta para a página do arquivo, não para o conteúdo bruto exigido pelo Mendeley Cite.
+> **Importante:** não use a URL visual do GitHub no formato `github.com/.../blob/...`, pois ela aponta para a página do arquivo, e não para o conteúdo bruto que o Mendeley Cite precisa acessar.
 
----
-
-## 🧭 Como obter a URL Raw pelo GitHub
-
-Para copiar a URL correta pelo GitHub:
-
-1. Abra este repositório no GitHub.
-2. Clique no arquivo:
+A URL antiga permanece disponível apenas para compatibilidade:
 
 ```text
-abnt-adaptado-ufrgs-6023-2025-10520-2023-doi.csl
+https://raw.githubusercontent.com/gislainecosta/abnt-csl-mendeley/refs/heads/main/adaptado-ufrgs-abnt-2025-com-doi-github.csl
 ```
-
-3. Com o arquivo aberto, clique em **Raw**.
-4. O navegador abrirá o conteúdo bruto do arquivo.
-5. Copie a URL da barra de endereço.
-6. Cole essa URL no Mendeley Cite quando ele solicitar a URL do estilo customizado.
 
 ---
 
-## ⚙️ Como instalar no Mendeley Cite usando a URL
-
-Para usar este estilo no Mendeley Cite:
+## ⚙️ Instalação no Mendeley Cite
 
 1. Abra o Word.
 2. Abra o painel do **Mendeley Cite**.
-3. Vá em **Citation Settings**.
+3. Acesse **Citation Settings**.
 4. Clique em **Change citation style**.
-5. Escolha a opção para adicionar estilo customizado.
-6. Cole a URL Raw do arquivo `.csl`:
+5. Escolha a opção para adicionar um estilo customizado.
+6. Cole a URL Raw do arquivo canônico:
 
 ```text
-https://raw.githubusercontent.com/gislainecosta/abnt-csl-mendeley/main/adaptado-ufrgs-abnt-2025-com-doi-github.csl
+https://raw.githubusercontent.com/gislainecosta/abnt-csl-mendeley/refs/heads/main/abnt-adaptado-ufrgs-6023-2025-10520-2023-doi.csl
 ```
 
-7. Confirme a inclusão do estilo.
-8. Após o envio, selecione o estilo:
-
-```text
-Adaptado de UFRGS - ABNT 6023:2025 e 10520:2023 com DOI
-```
+7. Confirme a inclusão.
+8. Selecione o estilo correspondente na lista do Mendeley Cite.
 
 ---
 
-## 🔄 Passo importante após instalar ou trocar o estilo
+## 🔄 Atualização do estilo no documento
 
-Depois de instalar o estilo customizado ou trocar o estilo de citação no Mendeley Cite, é importante fazer uma atualização geral.
+Após uma alteração no CSL:
 
-No Mendeley Cite:
+1. Confirme se o documento usa a URL e o estilo desejados.
+2. Use o comando de atualização do Mendeley Cite.
+3. Atualize a bibliografia.
+4. Confira novamente as referências no Word.
 
-1. Vá em **Citation Settings**.
-2. Confira se o estilo ativo é:
+O Mendeley Cite pode preservar dados do estilo no próprio arquivo `.docx`. Por esse motivo, a exclusão ou a troca de uma URL antiga pode afetar documentos existentes, mesmo que uma nova versão do CSL já esteja disponível no GitHub.
 
-```text
-Adaptado de UFRGS - ABNT 6023:2025 e 10520:2023 com DOI
-```
-
-3. Clique no ícone de atualização geral do Mendeley Cite.
-4. Se necessário, abra o menu de três pontos e clique em **Update Bibliography**.
-
-Esse passo é importante porque o Word/Mendeley Cite pode manter referências em cache. Em alguns casos, o DOI, ISBN, ISSN ou outros ajustes do estilo só aparecem corretamente depois dessa atualização geral.
-
-Se uma referência específica ainda não atualizar, uma alternativa é apagar a citação daquele item no Word, inserir novamente pelo Mendeley Cite e atualizar a bibliografia.
+Se uma referência específica não refletir uma correção feita no cadastro do Mendeley, apague apenas essa citação, insira-a novamente pelo Mendeley Cite e atualize a bibliografia.
 
 ---
 
-## ✅ Como conferir se o estilo correto foi instalado
+## 🧾 DOI, ISBN e ISSN
 
-Depois de instalar no Mendeley Cite, confira se aparece na lista de estilos o nome:
-
-```text
-Adaptado de UFRGS - ABNT 6023:2025 e 10520:2023 com DOI
-```
-
-Esse nome vem da tag `<title>` dentro do arquivo `.csl`.
-
-Se aparecer outro nome, ou se o estilo ficar duplicado com o nome da UFRGS, verifique se o arquivo instalado é a versão adaptada e se o `<id>` do arquivo está diferente do estilo UFRGS original.
-
----
-
-## 🧾 Observações sobre DOI, ISBN e ISSN
-
-Este estilo prioriza o DOI quando ele está disponível, porque o DOI identifica o documento digital específico.
-
-Em termos gerais:
+Este estilo prioriza o DOI quando ele está disponível, pois o DOI identifica o documento digital específico.
 
 | Identificador | Uso principal |
 |---|---|
-| **DOI** | Identifica um documento específico, como artigo, capítulo, dataset ou relatório digital. |
-| **ISBN** | Identifica livros e publicações monográficas. |
-| **ISSN** | Identifica periódicos, revistas, jornais e publicações seriadas. |
+| **DOI** | Documento específico, como artigo, capítulo, dataset ou relatório digital |
+| **ISBN** | Livros e publicações monográficas |
+| **ISSN** | Periódicos, revistas, jornais e publicações seriadas |
 
-Por isso, em artigos científicos, o DOI é priorizado em relação ao ISSN, já que o ISSN identifica a revista como um todo, enquanto o DOI identifica o artigo específico.
+Em artigos científicos, o DOI tem prioridade sobre o ISSN, pois o ISSN identifica o periódico como um todo, enquanto o DOI identifica o artigo específico.
 
 ---
 
-## ⚠️ Limitação conhecida: *et al.* em itálico nas citações textuais
+## ⚠️ Limitação conhecida: *et al.* em citações textuais
 
 ### O problema
 
-A ABNT exige que *et al.* apareça em itálico. Este estilo CSL aplica corretamente o itálico nas **citações parentéticas** — por exemplo:
+O estilo aplica itálico ao elemento `<et-al>`. Nas citações parentéticas, o Mendeley respeita essa formatação, por exemplo:
 
 > (Li *et al.*, 2019; Norton *et al.*, 2019)
 
-No entanto, nas **citações textuais** — quando o autor é citado fora dos parênteses — o Mendeley não aplica o itálico:
+Em citações textuais, o Mendeley Cite pode ignorar o itálico:
 
-> Segundo Wang et al. (2024), a duração da fertilidade...
+> Segundo Wang et al. (2024), ...
 
-Esse comportamento é um **bug conhecido do Mendeley** e foi confirmado pelos mantenedores do padrão CSL. O atributo `font-style="italic"` no elemento `<et-al>` é CSL válido e funciona corretamente no Zotero, mas o processador interno do Mendeley ignora essa formatação nas citações textuais. Não há solução possível apenas via CSL enquanto o Mendeley não corrigir esse comportamento.
+Essa limitação ocorre no processador do Mendeley Cite e não decorre da regra escrita no CSL.
 
-### Solução: corrigir o itálico no documento final
+### Correção no Word desktop
 
-A correção deve ser feita diretamente no Word, após finalizar todas as citações. O método disponível depende de como você está usando o Word:
+O arquivo `Macro.txt` deste repositório contém uma macro VBA que aplica itálico às ocorrências de `et al.` no documento.
 
----
+Para executar:
 
-#### ✅ Word instalado no PC (Office 2016 ou superior, incluindo Microsoft 365 e versões Enterprise)
+1. Abra o Word desktop.
+2. Pressione `Alt + F11` e adicione a macro ao modelo desejado.
+3. Pressione `Alt + F8`.
+4. Selecione `ItalicizarEtAl`.
+5. Clique em **Executar**.
 
-Use a **macro VBA** disponível neste repositório no arquivo `Macro.txt`. Ela percorre todo o documento automaticamente e formata em itálico todas as ocorrências de *et al.*, inclusive dentro das citações inseridas pelo Mendeley.
+Use a macro após a conclusão das citações e antes da entrega final do documento.
 
-**Antes de começar: verifique se as macros estão habilitadas**
+### Word para a web
 
-Por padrão, o Word pode bloquear a execução de macros por segurança. Para verificar e habilitar:
-
-1. Vá em `Arquivo → Opções → Central de Confiabilidade → Configurações da Central de Confiabilidade → Configurações de Macro`.
-2. Selecione **Desabilitar todas as macros com notificação** (recomendado) ou **Habilitar todas as macros**.
-   > A opção "com notificação" é a mais segura: o Word pergunta antes de rodar qualquer macro, e você autoriza caso a caso.
-3. Marque também **Confiar no acesso ao modelo de objeto do projeto VBA**.
-4. Clique em **OK** em todas as janelas abertas.
-5. Feche e reabra o Word para as configurações entrarem em vigor.
-
----
-
-**Como instalar a macro (uma vez só):**
-
-1. Abra o Word.
-2. Pressione `Alt + F11` para abrir o editor VBA.
-3. No painel esquerdo, localize **Normal** → **Modules**.
-4. Abra o arquivo `Macro.txt`, copie todo o conteúdo e cole no módulo em branco.
-5. Salve com `Ctrl + S`.
-
-**Como executar a macro:**
-
-- `Alt + F8` → selecione `ItalicizarEtAl` → clique em **Executar**
-
-**Opcional — criar um atalho de teclado:**
-
-1. Vá em `Arquivo → Opções → Personalizar Faixa de Opções → Atalhos de Teclado: Personalizar`.
-2. Em **Categorias**, escolha **Macros**.
-3. Selecione `ItalicizarEtAl`.
-4. Clique no campo **Pressione novo atalho** e pressione o atalho desejado, por exemplo `Ctrl + Shift + I`.
-5. Clique em **Atribuir** → **Fechar**.
-
-A macro formata apenas as ocorrências que **ainda não estão em itálico**, portanto é seguro executá-la várias vezes. Ao terminar, ela exibe uma mensagem informando quantas ocorrências foram formatadas.
-
----
-
-#### ⚠️ Word para a web (office.com, acessado pelo navegador)
-
-> **Atenção:** o **Microsoft 365** é uma assinatura que inclui o Word **instalado no PC** — ele suporta macros normalmente, como qualquer versão do Office. O cenário abaixo se aplica apenas a quem acessa o Word **diretamente pelo navegador**, no endereço office.com, sem instalar nada.
-
-O Word para a web **não suporta macros VBA** e o seu Localizar e Substituir não permite aplicar formatação — apenas substituir texto simples. Por isso, **não é possível automatizar a correção do itálico diretamente no navegador**.
-
-**Solução recomendada:** baixe o documento (`.docx`) e abra no Word instalado no PC para executar a macro. Após rodar a macro, salve e reenvie para o OneDrive ou SharePoint se necessário.
-
-Se realmente não tiver acesso ao Word desktop, a única alternativa é corrigir manualmente: localize cada ocorrência de *et al.* nas citações textuais e pressione `Ctrl + I`.
-
----
-
-> **Recomendação geral:** execute a correção após finalizar todas as citações do documento, antes da entrega final.
+O Word para a web não executa macros VBA. Nesse caso, abra o arquivo no Word desktop para aplicar a macro ou faça a correção manual no documento final.
 
 ---
 
 ## 📝 Recomendação de uso
 
-Mesmo utilizando um estilo CSL customizado, recomenda-se revisar as referências finais antes da entrega de trabalhos acadêmicos, especialmente quando houver exigências específicas de programa, orientador, banca ou periódico.
+Mesmo com um estilo CSL customizado, revise a bibliografia antes da entrega do trabalho. O resultado depende tanto das regras do CSL quanto do preenchimento correto dos metadados no Mendeley.
 
-Os gerenciadores de referência dependem do preenchimento correto dos campos bibliográficos. Para melhor resultado, confira se cada item no Mendeley possui, quando aplicável:
+Confira, quando aplicável:
 
 - autor;
 - ano;
@@ -259,23 +221,19 @@ Os gerenciadores de referência dependem do preenchimento correto dos campos bib
 - URL;
 - data de acesso.
 
-Também é importante conferir se não há registros duplicados no Mendeley, porque a citação no Word pode estar vinculada a uma versão antiga ou incompleta do item bibliográfico.
+Também confira registros duplicados, pois uma citação do Word pode estar vinculada a uma versão antiga ou incompleta de um item bibliográfico.
 
 ---
 
 ## ⚖️ Licença
 
-Este estilo é uma adaptação do estilo UFRGS-ABNT e mantém a licença original **Creative Commons Attribution-ShareAlike 3.0**.
-
-A adaptação preserva os créditos dos autores e contribuidores originais no arquivo `.csl`.
-
-A licença original declarada no arquivo é:
+Este estilo é uma adaptação do estilo UFRGS-ABNT e preserva a licença original **Creative Commons Attribution-ShareAlike 3.0**.
 
 ```xml
 <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
 ```
 
-Mais informações sobre a licença:
+Mais informações:
 
 ```text
 https://creativecommons.org/licenses/by-sa/3.0/
@@ -285,9 +243,7 @@ https://creativecommons.org/licenses/by-sa/3.0/
 
 ## 👤 Créditos
 
-Este estilo foi adaptado a partir do modelo UFRGS-ABNT.
-
-Os autores e contribuidores originais foram preservados no arquivo `.csl`.
+Este estilo foi adaptado a partir do modelo UFRGS-ABNT. Os autores e contribuidores originais permanecem registrados no arquivo `.csl`.
 
 Adaptação por:
 
