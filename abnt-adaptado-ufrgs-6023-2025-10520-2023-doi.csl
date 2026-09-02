@@ -784,8 +784,8 @@
       </choose>
     </layout>
   </citation>
-  <bibliography et-al-min="4" et-al-use-first="1" line-spacing="1" entry-spacing="1">
-    <!-- REFERÊNCIAS: a partir de 4 autores utiliza et al., alinhamento a esquerda, espaçamento simples e uma linha entre referências -->
+  <bibliography et-al-min="4" et-al-use-first="1" line-spacing="1" entry-spacing="0">
+    <!-- REFERÊNCIAS: a partir de 4 autores utiliza et al., alinhamento à esquerda, espaçamento simples e sem linha adicional entre referências -->
     <sort>
       <key macro="author-short"/>
       <key variable="year-suffix"/>
