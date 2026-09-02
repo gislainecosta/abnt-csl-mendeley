@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" default-locale="pt-BR">
   <info>
-    <title>ABNT 2025 com DOI (Adaptado de UFRGS) v.1</title>
-    <title-short>ABNT 2025 DOI (BaseUFRGS)</title-short>
+    <title>Adaptado de UFRGS - ABNT 6023:2025 e 10520:2023 com DOI - 2026</title>
+    <title-short>ABNT 6023:2025 / 10520:2023 DOI - 2026</title-short>
     <id>https://github.com/gislainecosta/abnt-csl-mendeley/adaptado-ufrgs-abnt-2025-com-doi</id>
     <link href="https://github.com/gislainecosta/abnt-csl-mendeley/blob/main/adaptado-ufrgs-abnt-2025-com-doi-github.csl" rel="self"/>
     <link href="http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas-ipea" rel="template"/>
